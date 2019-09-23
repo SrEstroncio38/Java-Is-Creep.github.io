@@ -26,7 +26,7 @@ ___
 -	Anuncios (¿?)
 -	Vidas (¿?)
 
-![Error al cargar la imagen](./Portfolio/img/lienzo_modelo_negocio.png)
+![Error al cargar la imagen](./Portfolio/img/lienzo_modelo_negocio.PNG)
 
 ___
 ## Descripción del juego básica
