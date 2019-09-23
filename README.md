@@ -26,7 +26,6 @@ ___
 -	Anuncios (¿?)
 -	Vidas (¿?)
 
-<br></br>
 ![Error al cargar la imagen](./Portfolio/img/lienzo_modelo_negocio.png)
 
 ___
