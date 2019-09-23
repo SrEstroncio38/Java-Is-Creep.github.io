@@ -3,8 +3,9 @@
 
 Somos una empresa dedicada al desarrollo de videojuegos con un potencial de diversion explosivo
 
-[Nuestro Twitter](https://twitter.com)
+[Twitter](https://twitter.com/Java_Is_Creep)
 
+[Instagram](https://www.instagram.com/java_is_creep/)
 ___
 ## Roles de los integrantes
 - Game Designer: Axel
