@@ -7,6 +7,7 @@ Somos una empresa dedicada al desarrollo de videojuegos con un potencial de dive
 
 [![Instagram](https://img.shields.io/badge/Follow--green?style=social&logo=instagram)](https://www.instagram.com/java_is_creep/)
 
+[Trello](https://trello.com/b/mT8An0gk/java-is-creep)
 ___
 ## Roles de los integrantes
 - Game Designer: Axel
