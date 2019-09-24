@@ -3,7 +3,7 @@
 
 Somos una empresa dedicada al desarrollo de videojuegos con un potencial de diversion explosivo
 
-[![](https://img.shields.io/twitter/follow/java_is_creep?label=Follow&style=social)](https://img.shields.io/twitter/follow/java_is_creep?label=Follow&style=social)
+[![Twitter](https://img.shields.io/twitter/follow/java_is_creep?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=java_is_creep)
 
 ___
 ## Roles de los integrantes
@@ -27,7 +27,7 @@ ___
 -	Vidas (¿?)
 
 <br></br>
-![Error al cargar la imagen](./Portfolio/img/lienzo_modelo_negocio.png)
+![Error al cargar la imagen](./Portfolio/img/lienzo_modelo_negocio.PNG)
 
 ___
 ## Descripción del juego básica
