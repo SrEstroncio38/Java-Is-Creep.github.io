@@ -1,0 +1,7 @@
+package server;
+
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+public class WebsocketSnailHandler extends TextWebSocketHandler {
+
+}

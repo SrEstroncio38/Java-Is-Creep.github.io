@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.SpringBootApplication"/>
+<fullyQualifiedTypeName name="org.springframework.boot.SpringApplication"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.EnableWebSocket"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.WebSocketConfigurer"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.handler.TextWebSocketHandler"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.WebSocketSession"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.TextMessage"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.CloseStatus"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer"/>
+<fullyQualifiedTypeName name="org.springframework.messaging.simp.config.MessageBrokerRegistry"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.StompEndpointRegistry"/>
+<fullyQualifiedTypeName name="org.springframework.messaging.handler.annotation.MessageMapping"/>
+<fullyQualifiedTypeName name="org.springframework.messaging.handler.annotation.SendTo"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+</qualifiedTypeNameHistroy>
