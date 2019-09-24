@@ -3,7 +3,7 @@
 
 Somos una empresa dedicada al desarrollo de videojuegos con un potencial de diversion explosivo
 
-[Nuestro Twitter](https://twitter.com)
+![Twitter](https://img.shields.io/twitter/follow/java_is_creep?label=Follow&style=social)
 
 ___
 ## Roles de los integrantes
