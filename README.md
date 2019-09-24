@@ -1,7 +1,7 @@
 # Java is Creep
 
 
-Somos una empresa dedicada al desarrollo de videojuegos con un potencial de diversion explosivo
+Somos una empresa dedicada al desarrollo de videojuegos con un potencial de diversion explosivo.
 
 [![Twitter](https://img.shields.io/twitter/follow/java_is_creep?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=java_is_creep)
 
