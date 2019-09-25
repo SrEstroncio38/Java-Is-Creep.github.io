@@ -44,6 +44,10 @@
 		
 	    }
 
+        connection.onmessage = (event)=> {
+            console.log('[DEBUG] WebSocket message received: ' + event.data);
+        }
+
         var particles = this.add.particles('red');
 
         var emitter = particles.createEmitter({
@@ -59,6 +63,13 @@
         logo.setCollideWorldBounds(true);
 
         emitter.startFollow(logo);
+
+        var sendMessageButton = this.add.text(100, 100, 'Enviar mensaje!', { fill: '#0f0' });
+        sendMessageButton.setInteractive();
+
+        sendMessageButton.on('pointerdown',()=>{
+            connection.send("hola soy el cliente");
+        })
     }
     </script>
 
