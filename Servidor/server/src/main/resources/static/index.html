@@ -68,7 +68,11 @@
         sendMessageButton.setInteractive();
 
         sendMessageButton.on('pointerdown',()=>{
-            connection.send("hola soy el cliente");
+            let msg = new Object()
+		msg.event = 'DEBUG'
+		msg.message = 'este es un mensaje de prueba'
+        msg.remitente = 'cliente'
+            connection.send(JSON.stringify(msg));
         })
     }
     </script>
