@@ -2,13 +2,13 @@ package server;
 
 import java.util.ArrayList;
 
-public class Post { // en caso de que no coincidan
+public class Post<T> { // en caso de que no coincidan
 	String event;
 	String message;
 	String remitente;
-	ArrayList <Integer> datos;
+	ArrayList <T> datos;
 
-	public Post(String event, String message, String remitente, ArrayList <Integer> datos) {
+	public Post(String event, String message, String remitente, ArrayList <T> datos) {
 		this.event = event;
 		this.message = message;
 		this.remitente = remitente;

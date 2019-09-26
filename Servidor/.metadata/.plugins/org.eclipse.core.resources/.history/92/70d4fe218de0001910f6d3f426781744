@@ -56,7 +56,7 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		lockSession.lock();
-		System.out.println("Alguien se ha conectado" + session);
+		System.out.println("Alguien se ha conectado");
 		session.sendMessage(new TextMessage("Mensaje del servidor"));
 		lockSession.unlock();
 	}

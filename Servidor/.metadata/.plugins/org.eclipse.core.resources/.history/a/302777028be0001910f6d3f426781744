@@ -6,9 +6,9 @@ public class Post { // en caso de que no coincidan
 	String event;
 	String message;
 	String remitente;
-	ArrayList <Integer> datos;
+	ArrayList datos;
 
-	public Post(String event, String message, String remitente, ArrayList <Integer> datos) {
+	public Post(String event, String message, String remitente, ArrayList datos) {
 		this.event = event;
 		this.message = message;
 		this.remitente = remitente;
