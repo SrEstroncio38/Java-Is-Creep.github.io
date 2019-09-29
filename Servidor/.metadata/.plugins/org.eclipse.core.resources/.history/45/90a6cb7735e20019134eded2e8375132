@@ -1,7 +1,0 @@
-package server;
-
-public class SnailGame {
-	//hay que hacer un mapa 
-	ConcurrentHashMap<WebSocketSession,JugadorConectado> jugadoresConectados = new ConcurrentHashMap();
-
-}

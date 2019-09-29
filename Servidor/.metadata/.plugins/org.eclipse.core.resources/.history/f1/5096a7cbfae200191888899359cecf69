@@ -1,7 +1,0 @@
-package server;
-
-public class snailInGame {
-	SquareCollider collider;
-	int posX;
-	int posY;
-}
