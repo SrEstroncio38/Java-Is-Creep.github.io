@@ -7,7 +7,6 @@
 <fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.WebSocketConfigurer"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
 <fullyQualifiedTypeName name="org.springframework.web.socket.handler.TextWebSocketHandler"/>
-<fullyQualifiedTypeName name="org.springframework.web.socket.WebSocketSession"/>
 <fullyQualifiedTypeName name="org.springframework.web.socket.TextMessage"/>
 <fullyQualifiedTypeName name="org.springframework.web.socket.CloseStatus"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
@@ -23,5 +22,9 @@
 <fullyQualifiedTypeName name="java.util.concurrent.locks.ReentrantLock"/>
 <fullyQualifiedTypeName name="com.fasterxml.jackson.core.JsonParser"/>
 <fullyQualifiedTypeName name="com.google.gson.Gson"/>
+<fullyQualifiedTypeName name="java.util.concurrent.ConcurrentHashMap"/>
+<fullyQualifiedTypeName name="org.springframework.web.socket.WebSocketSession"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

@@ -1,6 +1,5 @@
 package server;
 
-import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.springframework.web.socket.CloseStatus;
@@ -8,17 +7,18 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.google.gson.JsonParser;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 public class WebsocketSnailHandler extends TextWebSocketHandler {
 	public ReentrantLock lockSession = new ReentrantLock(); //lock que protege la session cuando se mandan mensajes.
+	SnailGame juego = new SnailGame();
 	 
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		lockSession.lock();
+		WebSocketSession nuevaSession  = session;
+		lockSession.unlock();
 		Gson googleJson = new Gson();
 		 Post post = googleJson.fromJson(message.getPayload(), Post.class);
 		 
@@ -29,6 +29,10 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 			System.out.println("Mensaje de debug");
 			int aux = post.datos.get(0) + post.datos.get(1);
 			System.out.println(" el numero es: " + aux);
+			break;
+		case "CONECTAR":
+			JugadorConectado jug = new JugadorConectado(nuevaSession,"");
+			juego.conectarJugador(jug);
 			break;
 		default:
 			
@@ -50,7 +54,6 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 		 * System.out.println(person.toString()); session.sendMessage(new
 		 * TextMessage(person.toString()));
 		 */
-		lockSession.unlock();
 	}
 
 	@Override

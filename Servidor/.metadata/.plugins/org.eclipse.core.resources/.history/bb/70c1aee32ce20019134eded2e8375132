@@ -1,0 +1,8 @@
+package server;
+
+import org.springframework.web.socket.WebSocketSession;
+
+public class Jugador {
+	WebSocketSession session;
+
+}

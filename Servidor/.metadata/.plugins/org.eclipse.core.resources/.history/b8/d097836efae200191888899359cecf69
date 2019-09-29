@@ -1,0 +1,40 @@
+package server;
+
+public class SquareCollider {
+	int ofssetX;
+	int ofssetY;
+	int maxX;
+	int maxY;
+	int minX;
+	int minY;
+	public SquareCollider(int ofssetX, int ofssetY) {
+		this.ofssetX = ofssetX;
+		this.ofssetY = ofssetY;
+	}
+	
+	public void recalculatePosition(int posX, int posY) {
+		maxX = posX+ofssetX;
+		minX = posX-ofssetX;
+		maxY = posY+ofssetY;
+		minY = posY+ofssetY;
+	}
+	
+	
+	public boolean hayColision(JugadorConectado jugador) {
+		
+		int posPositionX = jugador.mySnail.posX;
+		int posPositionY = jugador.mySnail.posY;
+		int otherPlayerMaxX = posPositionX+jugador.mySnail.collider.ofssetX;
+		int otherPlayerMinX = posPositionX-jugador.mySnail.collider.ofssetX;
+		int otherPlayerMaxY = posPositionY+jugador.mySnail.collider.ofssetY;
+		int otherPlayerMinY = posPositionY-jugador.mySnail.collider.ofssetY;
+		
+		
+		
+		
+		
+		
+		return false;
+	}
+
+}

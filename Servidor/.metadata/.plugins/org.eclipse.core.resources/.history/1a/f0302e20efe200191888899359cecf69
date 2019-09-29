@@ -1,0 +1,19 @@
+package server;
+
+public class SquareCollider {
+	int ofssetX;
+	int ofssetY;
+	public SquareCollider(int ofssetX, int ofssetY) {
+		super();
+		this.ofssetX = ofssetX;
+		this.ofssetY = ofssetY;
+	}
+	
+	
+	public boolean hayColision(JugadorConectado jugador) {
+		
+		
+		return false;
+	}
+
+}
