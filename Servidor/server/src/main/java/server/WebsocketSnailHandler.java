@@ -8,11 +8,12 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 public class WebsocketSnailHandler extends TextWebSocketHandler {
 	public ReentrantLock lockSession = new ReentrantLock(); //lock que protege la session cuando se mandan mensajes.
 	SnailGame game = new SnailGame();
-	Room room1 = new Room("sala1");
+	MultiplayerRoom room1 = new MultiplayerRoom("sala1");
 	 
 
 	@Override
@@ -62,8 +63,9 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		lockSession.lock(); // necesario cambiarlo
-		System.out.println("Alguien se ha conectado" + session);
-		session.sendMessage(new TextMessage("Mensaje del servidor"));
+		JsonObject msg = new JsonObject();
+		msg.addProperty("conectionStatus", true);
+		session.sendMessage(new TextMessage(msg.toString()));
 		lockSession.unlock();
 	}
 

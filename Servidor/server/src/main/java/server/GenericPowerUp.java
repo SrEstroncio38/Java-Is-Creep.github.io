@@ -1,6 +1,6 @@
 package server;
 
-public  class GenericPowerUp {
+public  class GenericPowerUp extends MapObject{
 	
 	int duracionRestante;
 	final int DURACIONMAX = 200;

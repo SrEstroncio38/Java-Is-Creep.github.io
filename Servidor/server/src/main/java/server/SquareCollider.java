@@ -1,12 +1,13 @@
 package server;
 
-public class SquareCollider {
+public class SquareCollider { // el centro de los colliders sera la esquina de abajo izq
 	int ofssetX;
 	int ofssetY;
 	int maxX;
 	int maxY;
 	int minX;
 	int minY;
+	
 	public SquareCollider(int ofssetX, int ofssetY) {
 		this.ofssetX = ofssetX;
 		this.ofssetY = ofssetY;
@@ -14,9 +15,9 @@ public class SquareCollider {
 	
 	public void recalculatePosition(int posX, int posY) {
 		maxX = posX+ofssetX;
-		minX = posX-ofssetX;
+		minX = posX;
 		maxY = posY+ofssetY;
-		minY = posY+ofssetY;
+		minY = posY;
 	}
 	
 	

@@ -14,7 +14,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 import com.google.gson.JsonObject;
 
-public class Room {
+public class MultiplayerRoom {
 	String nombre;
 	public final int MAXNUMPLAYERS = 4;
 	int numPlayers = 0;
@@ -24,7 +24,7 @@ public class Room {
 
 	ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
-	public Room(String nombre) {
+	public MultiplayerRoom(String nombre) {
 		this.nombre = nombre;
 	}
 

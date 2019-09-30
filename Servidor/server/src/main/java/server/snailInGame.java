@@ -12,6 +12,7 @@ public class snailInGame {
 	public final int MAXVELOCIDAD = 5;
 	public final float ACELERACION = 0.5f;
 	
+	
 	//
 	public int maxStamina;
 	public int maxVelocidad;
