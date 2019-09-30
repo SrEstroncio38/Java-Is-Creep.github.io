@@ -14,16 +14,17 @@ Slooow.initSesionState.prototype = {
     },
 
     preload: function () {
+
     },
 
     // Escribimos nombre y contraseña para el jugador y mandamos mensaje al
     // servidor para que lo compruebe
     create: function () {
         // BackGround
-        /*
-		var bg = game.add.image (game.world.centerX, game.world.centerY, 'background')
-		bg.anchor.set (0.5, 0.5)
-		bg.scale.setTo (1.2,1.2)
+        
+	    b = game.add.image (game.world.centerX, game.world.centerY, 'background')
+		b.anchor.set (0.5, 0.5)
+		b.scale.setTo (1.2,1.2)
 		/*
 		// Window
 		var window = game.add.image (game.world.centerX, game.world.centerY, 'window')
@@ -138,16 +139,20 @@ Slooow.initSesionState.prototype = {
                 && game.global.input2.value.length !== 0) {
 
                 let msg = {
-                    event: 'CONECTAR',
-                    nombreJugador: game.global.input2.value
+                    event: 'SINGLEPLAYER',
+                    playerName: game.global.input2.value,
+                    roomName: 'sala1'
                 }
                 game.global.socket.send(JSON.stringify(msg))
                 game.global.input2.text.setText('')
                 game.global.input2.value = undefined
+
+               
+                game.state.start('singlePlayerState')
+                
             }
         }
-
-        
+               
 
     }
     /*if (inicioSesionNameButton.value !== undefined && inicioSesionPassButton.value !== undefined){

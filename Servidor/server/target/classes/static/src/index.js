@@ -1,18 +1,3 @@
-/*var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 200 }
-        }
-    },
-    scene: {
-        preload: preload,
-        create: create
-    }
-};*/
 var game;
 
 window.onload = function () {
@@ -24,7 +9,8 @@ window.onload = function () {
         //Socket
         socket: null,
         FPS: 60,
-        DEBUG_MODE: true
+        DEBUG_MODE: true,
+        myPlayer : null
     }
     console.log('Despues crear game global');
 
@@ -48,6 +34,8 @@ window.onload = function () {
                     console.log('[DEBUG] TICK message recieved')
                     console.dir(msg)
                 }
+                game.global.myPlayer.playerImage.x = Math.floor(msg.posX)
+                game.global.myPlayer.playerImage.y = Math.floor(msg.posY)
                 break
         }
     }
@@ -55,6 +43,7 @@ window.onload = function () {
     this.game.state.add('bootState', Slooow.bootState);
     this.game.state.add('preloadState', Slooow.preloadState);
     this.game.state.add('initSesionState', Slooow.initSesionState);
+    this.game.state.add('singlePlayerState', Slooow.singlePlayerState);
 
     this.game.state.start('bootState');
     /*
