@@ -33,6 +33,7 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 			break;
 		case "CONECTAR":
 			JugadorConectado jug = new JugadorConectado(newSession,post.nombreJugador);
+			System.out.println(" anadiendo jugador " + jug.getNombre());
 			game.conectarJugador(jug);
 			room1.anadirJugador(jug);
 			break;
