@@ -26,9 +26,6 @@ public class Room {
 
 	public Room(String nombre) {
 		this.nombre = nombre;
-		lock.lock();
-		numPlayers++;
-		lock.unlock();
 	}
 
 	/*
@@ -40,11 +37,13 @@ public class Room {
 
 	public void anadirJugador(JugadorConectado jug) {
 		lock.lock();
-		if (jugadoresEnSala.putIfAbsent(jug.getSession(), jug) != null) {
+		if (jugadoresEnSala.putIfAbsent(jug.getSession(), jug) == null) {
 			numPlayers++;
+			System.out.println("Jugador: " + jug.getNombre());
 		}
 		;
 		if (numPlayers == MAXNUMPLAYERS) {
+			System.out.println("empezando room");
 			hasStart = true;
 			Runnable task = () -> {
 				lock.lock();
@@ -62,7 +61,7 @@ public class Room {
 				}
 				lock.unlock();
 			};
-			executor.scheduleAtFixedRate(task, 1, 1, TimeUnit.SECONDS);
+			executor.scheduleAtFixedRate(task, 1, 1, TimeUnit.SECONDS); // 6 frames por segundo
 		}
 		lock.unlock();
 	}
