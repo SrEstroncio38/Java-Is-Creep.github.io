@@ -11,13 +11,14 @@ import com.google.gson.Gson;
 
 public class WebsocketSnailHandler extends TextWebSocketHandler {
 	public ReentrantLock lockSession = new ReentrantLock(); //lock que protege la session cuando se mandan mensajes.
-	SnailGame juego = new SnailGame();
+	SnailGame game = new SnailGame();
+	Room room1 = new Room("sala1");
 	 
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		lockSession.lock();
-		WebSocketSession nuevaSession  = session;
+		WebSocketSession newSession  = session;
 		lockSession.unlock();
 		Gson googleJson = new Gson();
 		 Post post = googleJson.fromJson(message.getPayload(), Post.class);
@@ -31,8 +32,9 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 			System.out.println(" el numero es: " + aux);
 			break;
 		case "CONECTAR":
-			JugadorConectado jug = new JugadorConectado(nuevaSession,"");
-			juego.conectarJugador(jug);
+			JugadorConectado jug = new JugadorConectado(newSession,post.nombreJugador);
+			game.conectarJugador(jug);
+			room1.anadirJugador(jug);
 			break;
 		default:
 			
