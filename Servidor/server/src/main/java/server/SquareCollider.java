@@ -1,12 +1,13 @@
 package server;
 
-public class SquareCollider {
+public class SquareCollider { // el centro de los colliders sera la esquina de abajo izq
 	int ofssetX;
 	int ofssetY;
 	int maxX;
 	int maxY;
 	int minX;
 	int minY;
+	
 	public SquareCollider(int ofssetX, int ofssetY) {
 		this.ofssetX = ofssetX;
 		this.ofssetY = ofssetY;
@@ -14,13 +15,13 @@ public class SquareCollider {
 	
 	public void recalculatePosition(int posX, int posY) {
 		maxX = posX+ofssetX;
-		minX = posX-ofssetX;
+		minX = posX;
 		maxY = posY+ofssetY;
-		minY = posY+ofssetY;
+		minY = posY;
 	}
 	
 	
-	public boolean hayColision(JugadorConectado jugador) { // hay que intentar que solo se compruebe lo que es visible
+	public boolean hayColision(PlayerConected jugador) { // hay que intentar que solo se compruebe lo que es visible
 		
 		if((maxX > jugador.mySnail.collider.maxX) &&(minX< jugador.mySnail.collider.maxX)) { // comprobamos las maxX
 			if((maxY > jugador.mySnail.collider.maxY) &&(minY< jugador.mySnail.collider.maxY)) { // comprobamos las maxY

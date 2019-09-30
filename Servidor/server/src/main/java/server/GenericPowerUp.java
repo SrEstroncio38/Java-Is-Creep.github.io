@@ -1,12 +1,12 @@
 package server;
 
-public  class GenericPowerUp {
+public  class GenericPowerUp{
 	
 	int duracionRestante;
 	final int DURACIONMAX = 200;
-	snailInGame snailTarget;
+	SnailInGame snailTarget;
 	
-	public GenericPowerUp(snailInGame snail) {
+	public GenericPowerUp(SnailInGame snail) {
 		snailTarget = snail;
 		duracionRestante = DURACIONMAX;
 	}

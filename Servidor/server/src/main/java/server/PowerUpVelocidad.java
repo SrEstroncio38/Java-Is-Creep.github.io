@@ -5,7 +5,7 @@ public class PowerUpVelocidad extends GenericPowerUp {
 	public final int AUMENTOVELOCIDAD = 20;
 	public final float AUMENTOACELERACION = 0.5f;
 	
-	public PowerUpVelocidad(snailInGame snail) {
+	public PowerUpVelocidad(SnailInGame snail) {
 		super(snail);
 	}
 
