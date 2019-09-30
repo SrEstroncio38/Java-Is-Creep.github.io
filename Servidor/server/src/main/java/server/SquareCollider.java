@@ -21,7 +21,7 @@ public class SquareCollider { // el centro de los colliders sera la esquina de a
 	}
 	
 	
-	public boolean hayColision(JugadorConectado jugador) { // hay que intentar que solo se compruebe lo que es visible
+	public boolean hayColision(PlayerConected jugador) { // hay que intentar que solo se compruebe lo que es visible
 		
 		if((maxX > jugador.mySnail.collider.maxX) &&(minX< jugador.mySnail.collider.maxX)) { // comprobamos las maxX
 			if((maxY > jugador.mySnail.collider.maxY) &&(minY< jugador.mySnail.collider.maxY)) { // comprobamos las maxY

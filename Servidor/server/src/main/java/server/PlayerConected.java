@@ -2,11 +2,11 @@ package server;
 
 import org.springframework.web.socket.WebSocketSession;
 
-public class JugadorConectado {
+public class PlayerConected {
 	private WebSocketSession session;
 	private String nombre;
-	public snailInGame mySnail;
-	public JugadorConectado(WebSocketSession session, String nombre) {
+	public SnailInGame mySnail;
+	public PlayerConected(WebSocketSession session, String nombre) {
 		this.session = session;
 		this.nombre = nombre;
 	}

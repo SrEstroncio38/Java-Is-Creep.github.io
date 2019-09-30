@@ -11,45 +11,47 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 public class WebsocketSnailHandler extends TextWebSocketHandler {
-	public ReentrantLock lockSession = new ReentrantLock(); //lock que protege la session cuando se mandan mensajes.
+	public ReentrantLock lockSession = new ReentrantLock(); // lock que protege la session cuando se mandan mensajes.
 	SnailGame game = new SnailGame();
-	MultiplayerRoom room1 = new MultiplayerRoom("sala1");
-	 
+	
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		lockSession.lock();
-		WebSocketSession newSession  = session;
+		WebSocketSession newSession = session;
 		lockSession.unlock();
 		Gson googleJson = new Gson();
-		 Post post = googleJson.fromJson(message.getPayload(), Post.class);
-		 
-		 System.out.println(post.toString());
-		
-		switch(post.event) {
-		case"DEBUG":
+		Post post = googleJson.fromJson(message.getPayload(), Post.class);
+
+		System.out.println(post.toString());
+		PlayerConected jug;
+
+		switch (post.event) {
+		case "DEBUG":
 			System.out.println("Mensaje de debug");
 			int aux = post.datos.get(0) + post.datos.get(1);
 			System.out.println(" el numero es: " + aux);
 			break;
 		case "CONECTAR":
-			JugadorConectado jug = new JugadorConectado(newSession,post.nombreJugador);
+			jug = new PlayerConected(newSession, post.playerName);
 			System.out.println(" anadiendo jugador " + jug.getNombre());
 			game.conectarJugador(jug);
-			room1.anadirJugador(jug);
+			game.room2.anadirJugador(jug);
+			break;
+		case "SINGLEPLAYER":
+			jug = new PlayerConected(newSession, post.playerName);
+			game.room1 = new SinglePlayerRoom(post.roomName,jug);
 			break;
 		default:
-			
+
 		}
-		
-		
-		
+
 		// prueba mensajes
 		/*
-		System.out.println("Mensaje recibido " + message.getPayload());
-		String msg = "Mensaje recibido por el server: " + message.getPayload();
-		session.sendMessage(new TextMessage(msg));
-		*/
+		 * System.out.println("Mensaje recibido " + message.getPayload()); String msg =
+		 * "Mensaje recibido por el server: " + message.getPayload();
+		 * session.sendMessage(new TextMessage(msg));
+		 */
 
 		// Create new JSON Object y prueba JSONS
 		/*

@@ -20,7 +20,7 @@ public class MultiplayerRoom {
 	int numPlayers = 0;
 	boolean hasStart = false;
 	ReentrantLock lock = new ReentrantLock();
-	HashMap<WebSocketSession, JugadorConectado> jugadoresEnSala = new HashMap<WebSocketSession, JugadorConectado>();
+	HashMap<WebSocketSession, PlayerConected> jugadoresEnSala = new HashMap<WebSocketSession, PlayerConected>();
 
 	ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
@@ -35,7 +35,7 @@ public class MultiplayerRoom {
 	 * } lock.unlock(); }
 	 */
 
-	public void anadirJugador(JugadorConectado jug) {
+	public void anadirJugador(PlayerConected jug) {
 		lock.lock();
 		if (jugadoresEnSala.putIfAbsent(jug.getSession(), jug) == null) {
 			numPlayers++;
@@ -47,7 +47,7 @@ public class MultiplayerRoom {
 			hasStart = true;
 			Runnable task = () -> {
 				lock.lock();
-				for (JugadorConectado jug2 : jugadoresEnSala.values()) {
+				for (PlayerConected jug2 : jugadoresEnSala.values()) {
 
 					JsonObject msg = new JsonObject();
 					msg.addProperty("event", "tick");
@@ -66,7 +66,7 @@ public class MultiplayerRoom {
 		lock.unlock();
 	}
 
-	public void quitarJugador(JugadorConectado jug) {
+	public void quitarJugador(PlayerConected jug) {
 		lock.lock();
 		if (jugadoresEnSala.remove(jug.getSession()) != null) {
 			numPlayers--;
