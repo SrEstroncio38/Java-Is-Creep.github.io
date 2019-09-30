@@ -20,7 +20,7 @@ Slooow.initSesionState.prototype = {
     // servidor para que lo compruebe
     create: function () {
         // BackGround
-        /*
+        
 		var bg = game.add.image (game.world.centerX, game.world.centerY, 'background')
 		bg.anchor.set (0.5, 0.5)
 		bg.scale.setTo (1.2,1.2)

@@ -14,7 +14,8 @@ Slooow.preloadState.prototype = {
 
 	// Hasta que este preload no acabe, no se pasa al siguiente estado
 	preload : function() {
-		game.load.image('background', 'assets/img/background.jpg');
+		var img = game.load.image('background', 'assets/img/background.jpg');
+		img.crossOrigin = "anonymous";
 	},
 
 	// Pasa al inicio de sesion - crear nuevo usuario
