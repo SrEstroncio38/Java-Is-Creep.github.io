@@ -97,8 +97,8 @@ Slooow.initSesionState.prototype = {
         });
         this.escKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         game.input.keyboard.addKeyCapture(Phaser.Keyboard.ENTER);
-        
-      
+
+
 		/*
 		buttonInitSesion = game.add.button(game.world.centerX,
 				game.world.centerY + 100, 'button1', actionOnClick, this,
@@ -135,26 +135,28 @@ Slooow.initSesionState.prototype = {
     update: function () {
         if (game.global.input2.value !== undefined) {
             if (this.escKey.justDown
-                    && game.global.input2.value.length !== 0) {
-                
-                
-                    let msg = {
-                        event : 'CONECTAR',
-                        nombreJugador : game.global.input2.value
-                    }
-                    game.global.socket.send(JSON.stringify(msg))
-                    game.global.input2.text.setText('')
-                    game.global.input2.value = undefined
+                && game.global.input2.value.length !== 0) {
+
+                let msg = {
+                    event: 'CONECTAR',
+                    nombreJugador: game.global.input2.value
                 }
+                game.global.socket.send(JSON.stringify(msg))
+                game.global.input2.text.setText('')
+                game.global.input2.value = undefined
             }
         }
-		/*if (inicioSesionNameButton.value !== undefined && inicioSesionPassButton.value !== undefined){
-			if (inicioSesionNameButton.value.length !== 0 && inicioSesionPassButton.value.length !== 0){
-				textButtonInit.alpha = 1
-				buttonInitSesion.alpha = 1
-			}else {
-				textButtonInit.alpha = 0.5
-				buttonInitSesion.alpha = 0.5
-			}
-		}*/
+
+        
+
     }
+    /*if (inicioSesionNameButton.value !== undefined && inicioSesionPassButton.value !== undefined){
+        if (inicioSesionNameButton.value.length !== 0 && inicioSesionPassButton.value.length !== 0){
+            textButtonInit.alpha = 1
+            buttonInitSesion.alpha = 1
+        }else {
+            textButtonInit.alpha = 0.5
+            buttonInitSesion.alpha = 0.5
+        }
+    }*/
+}
