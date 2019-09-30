@@ -24,7 +24,7 @@ window.onload = function () {
         //Socket
         socket: null,
         FPS: 60,
-        DEBUG_MODE : true
+        DEBUG_MODE: true
     }
     console.log('Despues crear game global');
 
@@ -39,16 +39,23 @@ window.onload = function () {
         console.log('[DEBUG] Websocket connection closed');
     }
 
+    game.global.socket.onmessage = (message) => {
+        var msg = JSON.parse(message.data)
 
-    game.global.socket.onmessage = (event) => {
-        console.log('[DEBUG] WebSocket message received: ' + event.data)
+        switch (msg.event) {
+            case 'tick':
+                if (game.global.DEBUG_MODE) {
+                    console.log('[DEBUG] TICK message recieved')
+                    console.dir(msg)
+                }
+                break
+        }
     }
 
-    
-    this.game.state.add ('bootState', Slooow.bootState);
-    this.game.state.add ('preloadState', Slooow.preloadState);
-    this.game.state.add ('initSesionState', Slooow.initSesionState);
-    
+    this.game.state.add('bootState', Slooow.bootState);
+    this.game.state.add('preloadState', Slooow.preloadState);
+    this.game.state.add('initSesionState', Slooow.initSesionState);
+
     this.game.state.start('bootState');
     /*
     function create() {
@@ -72,21 +79,21 @@ window.onload = function () {
         
             emitter.startFollow(logo);
         */
-        /*
-         var sendMessageButton = this.add.text(100, 100, 'Enviar mensaje!', { fill: '#0f0' });
-         sendMessageButton.setInteractive();
-    
-        button = game.add.button(game.world.centerX - 95, 460, 'button', openWindow, this, 2, 1, 0);
-        button.input.useHandCursor = true;
+    /*
+     var sendMessageButton = this.add.text(100, 100, 'Enviar mensaje!', { fill: '#0f0' });
+     sendMessageButton.setInteractive();
+ 
+    button = game.add.button(game.world.centerX - 95, 460, 'button', openWindow, this, 2, 1, 0);
+    button.input.useHandCursor = true;
 
-        button.on('pointerdown', () => {
-            let msg = new Object()
-            msg.event = 'DEBUG'
-            msg.message = 'este es un mensaje de prueba'
-            msg.remitente = 'cliente'
-            msg.datos = [3, 8, 16]
-            msg.intruso = 'axwell'
-            connection.send(JSON.stringify(msg));
-        })
-    }*/
+    button.on('pointerdown', () => {
+        let msg = new Object()
+        msg.event = 'DEBUG'
+        msg.message = 'este es un mensaje de prueba'
+        msg.remitente = 'cliente'
+        msg.datos = [3, 8, 16]
+        msg.intruso = 'axwell'
+        connection.send(JSON.stringify(msg));
+    })
+}*/
 }
