@@ -36,8 +36,8 @@ window.onload = function () {
                     console.log('[DEBUG] TICK message recieved')
                     console.dir(msg)
                 }
-                game.global.myPlayer.image.x = Math.floor(msg.posX)
-                game.global.myPlayer.image.y = Math.floor(msg.posY)
+                game.global.myPlayer.playerImage.x = Math.floor(msg.posX)
+                game.global.myPlayer.playerImage.y = Math.floor(msg.posY)
                 break
         }
     }
