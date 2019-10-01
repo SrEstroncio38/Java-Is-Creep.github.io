@@ -10,7 +10,7 @@ window.onload = function () {
         socket: null,
         FPS: 60,
         DEBUG_MODE: true,
-        myPlayer : null
+        player : null
     }
     console.log('Despues crear game global');
 
@@ -31,13 +31,13 @@ window.onload = function () {
 
         switch (msg.event) {
             
-            case 'tick':
+            case 'TICK':
                 if (game.global.DEBUG_MODE) {
                     console.log('[DEBUG] TICK message recieved')
                     console.dir(msg)
                 }
-                game.global.myPlayer.playerImage.x = Math.floor(msg.posX)
-                game.global.myPlayer.playerImage.y = Math.floor(msg.posY)
+                game.global.player.x = Math.floor(msg.posX)
+                game.global.player.y = Math.floor(msg.posY)
                 break
         }
     }

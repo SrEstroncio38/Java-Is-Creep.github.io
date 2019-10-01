@@ -10,7 +10,7 @@ window.onload = function () {
         socket: null,
         FPS: 60,
         DEBUG_MODE: true,
-        myPlayer : null
+        player : null
     }
     console.log('Despues crear game global');
 
@@ -36,8 +36,8 @@ window.onload = function () {
                     console.log('[DEBUG] TICK message recieved')
                     console.dir(msg)
                 }
-                game.global.myPlayer.image.x = Math.floor(msg.posX)
-                game.global.myPlayer.image.y = Math.floor(msg.posY)
+                game.global.player.x = Math.floor(msg.posX)
+                game.global.player.y = Math.floor(msg.posY)
                 break
         }
     }

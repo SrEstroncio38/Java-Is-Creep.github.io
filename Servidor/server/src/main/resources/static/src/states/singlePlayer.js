@@ -17,12 +17,26 @@ Slooow.singlePlayerState.prototype = {
 	},
 
 	create : function() {
-
+		this.wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
+		game.input.keyboard.addKeyCapture([ Phaser.Keyboard.W]);
 	},
 
 	// Se ejecuta siempre hasta que se consigue conexion, en ese caso, pasa a preload (escena)
 	update : function() {
 
+
+		let msg = {
+			event: 'UPDATEINPUT',
+			isStopping: false,
+			useObject: false
+		}
+
+		if (this.wKey.isDown){
+			msg.isStopping = true;
+		}
+
+
+		game.global.socket.send(JSON.stringify(msg))
 			//game.state.start('preloadState')
 	}
 }
