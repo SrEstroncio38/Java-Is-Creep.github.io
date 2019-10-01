@@ -29,18 +29,24 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 		switch (post.event) {
 		case "DEBUG":
 			System.out.println("Mensaje de debug");
-			int aux = post.datos.get(0) + post.datos.get(1);
-			System.out.println(" el numero es: " + aux);
+
 			break;
+			/*
 		case "CONECTAR":
 			jug = new PlayerConected(newSession, post.playerName);
 			System.out.println(" anadiendo jugador " + jug.getNombre());
 			game.conectarJugador(jug);
 			game.room2.anadirJugador(jug);
 			break;
+			*/
 		case "SINGLEPLAYER":
 			jug = new PlayerConected(newSession, post.playerName);
+			game.conectarJugador(jug); 
 			game.room1 = new SinglePlayerRoom(post.roomName,jug);
+			break;
+		case "UPDATEINPUT":
+			jug = game.bucarJugadorConectado(newSession);
+			jug.mySnail.updateMovement(post.isStopping, post.useObject);
 			break;
 		default:
 

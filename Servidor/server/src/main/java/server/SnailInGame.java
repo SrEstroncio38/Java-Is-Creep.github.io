@@ -1,5 +1,7 @@
 package server;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class SnailInGame {
 	SquareCollider collider;
 	final int colliderOfsetX = 50;
@@ -7,18 +9,20 @@ public class SnailInGame {
 	float posX;
 	float posY;
 	int stamina;
-	// Valores maximos que pueden ser cambiado con power ups momentameamente
+	// valores iniciales
 	public final int MAXSTAMINA = 100;
 	public final int MAXVELOCIDAD = 5;
 	public final float ACELERACION = 0.5f;
 
-	//
+	//Valores maximos que pueden ser cambiado con power ups momentameamente
 	public float velocidad;
 	public int maxStamina;
 	public int maxVelocidad;
 	public float aceleracion;
 	LastMovement lastMovement;
 	GenericPowerUp powerUp;
+	
+	ReentrantLock lastMovementLock = new ReentrantLock(); // se puede tocar tanto en el manejador de mensajes como en el loop de la sala
 	
 
 	@Override
@@ -56,11 +60,25 @@ public class SnailInGame {
 	}
 
 	public void updateSnail() {
-		velocidad +=ACELERACION;
+		
+		lastMovementLock.lock();
+		if(!lastMovement.isStopping) {
+			velocidad +=aceleracion;
+		} else {
+			velocidad -= aceleracion;
+		}
+		lastMovementLock.unlock();
+		
 		if(velocidad > maxVelocidad) {
 			velocidad = maxVelocidad;
 		}
 		posX+= velocidad;
+	}
+	
+	public void updateMovement(boolean isStoping ,boolean useObject) {
+		lastMovementLock.lock();
+		lastMovement = new LastMovement(isStoping,useObject);
+		lastMovementLock.unlock();
 	}
 
 }

@@ -14,6 +14,7 @@ public class SinglePlayerRoom {
 	String name;
 	PlayerConected player;
 	ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+	Map mapa  = new Map(300); // anchura d ela camara sin definir aun
 
 	public SinglePlayerRoom(String name, PlayerConected player) {
 		this.name = name;
@@ -29,7 +30,7 @@ public class SinglePlayerRoom {
 
 			player.mySnail.updateSnail();
 			JsonObject msg = new JsonObject();
-			msg.addProperty("event", "tick");
+			msg.addProperty("event", "TICK");
 			msg.addProperty("posX", player.mySnail.posX);
 			msg.addProperty("posY", player.mySnail.posY);
 			
@@ -39,8 +40,6 @@ public class SinglePlayerRoom {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			System.out.println("ENVIANDO MENSAJE " + new Date().toString());
 		};
 		executor.scheduleAtFixedRate(task, 1, 1, TimeUnit.SECONDS);
 	}
