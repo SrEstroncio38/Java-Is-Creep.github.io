@@ -31,7 +31,7 @@ window.onload = function () {
 
         switch (msg.event) {
             
-            case 'tick':
+            case 'TICK':
                 if (game.global.DEBUG_MODE) {
                     console.log('[DEBUG] TICK message recieved')
                     console.dir(msg)
