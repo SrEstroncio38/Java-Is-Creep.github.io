@@ -13,7 +13,7 @@ Slooow.singlePlayerState.prototype = {
 	},
 
 	preload : function() {
-		game.global.player = game.add.image(game.world.centerX, game.world.centerY, 'seaSnail')
+		game.global.myPlayer = game.add.image(game.world.centerX, game.world.centerY, 'seaSnail')
 	},
 
 	create : function() {

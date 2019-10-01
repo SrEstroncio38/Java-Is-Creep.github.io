@@ -13,15 +13,27 @@ public class SnailInGame {
 	public final float ACELERACION = 0.5f;
 
 	//
+	public float velocidad;
 	public int maxStamina;
 	public int maxVelocidad;
 	public float aceleracion;
 	LastMovement lastMovement;
 	GenericPowerUp powerUp;
+	
+
+	@Override
+	public String toString() {
+		return "SnailInGame [collider=" + collider + ", colliderOfsetX=" + colliderOfsetX + ", colliderOfsetY="
+				+ colliderOfsetY + ", posX=" + posX + ", posY=" + posY + ", stamina=" + stamina + ", MAXSTAMINA="
+				+ MAXSTAMINA + ", MAXVELOCIDAD=" + MAXVELOCIDAD + ", ACELERACION=" + ACELERACION + ", maxStamina="
+				+ maxStamina + ", maxVelocidad=" + maxVelocidad + ", aceleracion=" + aceleracion + ", lastMovement="
+				+ lastMovement + ", powerUp=" + powerUp + "]";
+	}
 
 	public SnailInGame() {
 		posX = 0;
 		posY = 0;
+		velocidad =0;
 		maxStamina = MAXSTAMINA;
 		maxVelocidad = MAXVELOCIDAD;
 		aceleracion = ACELERACION;
@@ -44,7 +56,11 @@ public class SnailInGame {
 	}
 
 	public void updateSnail() {
-		posX+= ACELERACION;
+		velocidad +=ACELERACION;
+		if(velocidad > maxVelocidad) {
+			velocidad = maxVelocidad;
+		}
+		posX+= velocidad;
 	}
 
 }

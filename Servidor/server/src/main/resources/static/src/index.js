@@ -27,8 +27,10 @@ window.onload = function () {
 
     game.global.socket.onmessage = (message) => {
         var msg = JSON.parse(message.data)
+        console.log(msg);
 
         switch (msg.event) {
+            
             case 'tick':
                 if (game.global.DEBUG_MODE) {
                     console.log('[DEBUG] TICK message recieved')

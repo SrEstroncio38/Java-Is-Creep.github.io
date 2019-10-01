@@ -9,6 +9,7 @@ public class PlayerConected {
 	public PlayerConected(WebSocketSession session, String nombre) {
 		this.session = session;
 		this.nombre = nombre;
+		mySnail = new SnailInGame();
 	}
 	public WebSocketSession getSession() {
 		return session;
