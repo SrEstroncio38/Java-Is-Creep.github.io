@@ -14,6 +14,8 @@ Slooow.singlePlayerState.prototype = {
 
 	preload : function() {
 		game.global.player = game.add.image(game.world.centerX, game.world.centerY, 'seaSnail')
+		game.global.player.anchor.setTo(0.5, 0.5);
+		game.global.player.scale.setTo(0.3, 0.3)
 	},
 
 	create : function() {
@@ -33,10 +35,11 @@ Slooow.singlePlayerState.prototype = {
 
 		if (this.wKey.isDown){
 			msg.isStopping = true;
+		} else if (this.wKey.isUp){
+			
 		}
 
 
 		game.global.socket.send(JSON.stringify(msg))
-			//game.state.start('preloadState')
 	}
 }
