@@ -37,7 +37,7 @@ window.onload = function () {
                     console.dir(msg)
                 }
                 game.global.player.x = Math.floor(msg.posX)
-                game.global.player.y = Math.floor(msg.posY)
+                game.global.player.y = Math.floor(msg.posY) +500
                 break
         }
     }
