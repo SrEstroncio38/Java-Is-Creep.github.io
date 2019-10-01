@@ -23,7 +23,6 @@ public class WebsocketSnailHandler extends TextWebSocketHandler {
 		Gson googleJson = new Gson();
 		Post post = googleJson.fromJson(message.getPayload(), Post.class);
 
-		System.out.println(post.toString());
 		PlayerConected jug;
 
 		switch (post.event) {

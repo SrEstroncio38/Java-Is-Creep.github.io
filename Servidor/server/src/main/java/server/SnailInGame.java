@@ -6,21 +6,29 @@ public class SnailInGame {
 	SquareCollider collider;
 	final int colliderOfsetX = 50;
 	final int colliderOfsetY = 50;
-	float posX;
-	float posY;
+	float posX = 20;
+	float posY = 0;
 	int stamina;
 	// valores iniciales
 	public final int MAXSTAMINA = 100;
-	public final int MAXVELOCIDAD = 5;
-	public final float ACELERACION = 0.5f;
+	public final int MAXVELOCIDAD = 20;
+	public final float ACELERACION = 2f;
+	public final float FRENADO = 3;
 
 	//Valores maximos que pueden ser cambiado con power ups momentameamente
-	public float velocidad;
 	public int maxStamina;
 	public int maxVelocidad;
 	public float aceleracion;
+	public float frenado;
+	
+	
+	
+	public float velocidad;
 	LastMovement lastMovement;
 	GenericPowerUp powerUp;
+	
+	
+	//interaccion con el escenario 
 	
 	ReentrantLock lastMovementLock = new ReentrantLock(); // se puede tocar tanto en el manejador de mensajes como en el loop de la sala
 	
@@ -35,12 +43,11 @@ public class SnailInGame {
 	}
 
 	public SnailInGame() {
-		posX = 0;
-		posY = 0;
 		velocidad =0;
 		maxStamina = MAXSTAMINA;
 		maxVelocidad = MAXVELOCIDAD;
 		aceleracion = ACELERACION;
+		frenado = FRENADO;
 
 		stamina = MAXSTAMINA;
 		collider = new SquareCollider(colliderOfsetX, colliderOfsetY);
@@ -65,12 +72,14 @@ public class SnailInGame {
 		if(!lastMovement.isStopping) {
 			velocidad +=aceleracion;
 		} else {
-			velocidad -= aceleracion;
+			velocidad -= frenado;
 		}
 		lastMovementLock.unlock();
 		
 		if(velocidad > maxVelocidad) {
 			velocidad = maxVelocidad;
+		} else if(velocidad < 0) {
+			velocidad = 0;
 		}
 		posX+= velocidad;
 	}
