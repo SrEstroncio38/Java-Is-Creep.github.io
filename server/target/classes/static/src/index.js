@@ -10,7 +10,9 @@ window.onload = function () {
         socket: null,
         FPS: 60,
         DEBUG_MODE: true,
-        player : null
+        player : null,
+        ground: null
+
     }
     console.log('Despues crear game global');
 
@@ -39,13 +41,23 @@ window.onload = function () {
                 game.global.player.x = Math.floor(msg.posX)
                 game.global.player.y = Math.floor(msg.posY) +500
                 break
+
+            case 'DRAWGROUND':
+                game.global.ground.x = msg.x;
+                game.global.ground.y = msg.y +500
+                game.global.ground.height = msg.height;
+                game.global.ground.width = msg.width;
+                    
         }
     }
 
     this.game.state.add('bootState', Slooow.bootState);
     this.game.state.add('preloadState', Slooow.preloadState);
     this.game.state.add('initSesionState', Slooow.initSesionState);
+    this.game.state.add('createAccountState', Slooow.createAccountState);
+    this.game.state.add('mainMenuState', Slooow.mainMenuState);
     this.game.state.add('singlePlayerState', Slooow.singlePlayerState);
+    this.game.state.add('shopState', Slooow.shopState);
 
     this.game.state.start('bootState');
     /*

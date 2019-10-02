@@ -21,11 +21,17 @@ Slooow.singlePlayerState.prototype = {
 	create : function() {
 		this.wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
 		game.input.keyboard.addKeyCapture([ Phaser.Keyboard.W]);
+
+		//var suelo = new Phaser.Rectangle (30, 550, 30, 500)
+
+		var graphics = game.add.graphics(100, 100);
+		console.log('Dibujar rectangulo');
+		graphics.lineStyle(2, 0x0000FF, 1);
+    	//graphics.drawRect(50, 250, 500, 100);
 	},
 
 	// Se ejecuta siempre hasta que se consigue conexion, en ese caso, pasa a preload (escena)
 	update : function() {
-
 
 		let msg = {
 			event: 'UPDATEINPUT',
@@ -39,6 +45,9 @@ Slooow.singlePlayerState.prototype = {
 			
 		}
 
+		if (game.global.ground != null){
+			graphics.drawRect(game.global.ground.x, game.global.ground.y, game.global.ground.heigth, game.global.ground.width)
+		}
 
 		game.global.socket.send(JSON.stringify(msg))
 	}
