@@ -24,16 +24,18 @@ public class SinglePlayerRoom {
 		this.name = name;
 		this.player = player;
 		createMap();
-		notificarMapa();
+		sendMap();
 		
 		tick();
 		
 		
 	}
 	
-	public void notificarMapa() {
-		MapObject [] objetos = (MapObject[]) map.map.toArray();
-		String array = new Gson().toJson(objetos);
+	public void sendMap() {
+
+		Gson gson = new Gson();
+		String array = gson.toJson(map.map);
+		System.out.println(array);
 		JsonObject person = new JsonObject();
 		person.addProperty("event","DRAWMAP");
 		person.addProperty("mapObjects", array);
@@ -99,7 +101,7 @@ public class SinglePlayerRoom {
 				e.printStackTrace();
 			}
 		};
-		executor.scheduleAtFixedRate(task, 1000, 33, TimeUnit.MILLISECONDS);
+		executor.scheduleAtFixedRate(task, 1000, 2000, TimeUnit.MILLISECONDS);
 	}
 	
 }
