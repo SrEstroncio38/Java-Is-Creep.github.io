@@ -11,8 +11,8 @@ window.onload = function () {
         FPS: 60,
         DEBUG_MODE: true,
         player : null,
-        ground: null
-
+        mapObjects: [],
+        mapDrawn: false
     }
     console.log('Despues crear game global');
 
@@ -42,11 +42,17 @@ window.onload = function () {
                 game.global.player.y = Math.floor(msg.posY) +500
                 break
 
-            case 'DRAWGROUND':
-                game.global.ground.x = msg.x;
-                game.global.ground.y = msg.y +500
-                game.global.ground.height = msg.height;
-                game.global.ground.width = msg.width;
+            case 'DRAWMAP':
+                var i = 0;
+                for (var object in msg.mapObjects){
+                    game.global.mapObjects[i].x = object.posX;
+                    game.global.mapObjects[i].y = object.posY +500
+                    game.global.mapObjects[i].height = object.height;
+                    game.global.mapObjects[i].width = object.width;
+                    i++;
+                }
+                break;
+                
                     
         }
     }

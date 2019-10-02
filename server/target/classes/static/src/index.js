@@ -54,7 +54,10 @@ window.onload = function () {
     this.game.state.add('bootState', Slooow.bootState);
     this.game.state.add('preloadState', Slooow.preloadState);
     this.game.state.add('initSesionState', Slooow.initSesionState);
+    this.game.state.add('createAccountState', Slooow.createAccountState);
+    this.game.state.add('mainMenuState', Slooow.mainMenuState);
     this.game.state.add('singlePlayerState', Slooow.singlePlayerState);
+    this.game.state.add('shopState', Slooow.shopState);
 
     this.game.state.start('bootState');
     /*
