@@ -1,6 +1,7 @@
 package server;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -31,13 +32,37 @@ public class SinglePlayerRoom {
 	}
 	
 	public void sendMap() {
+		
+		ArrayList <Integer> posX = new ArrayList<>();
+		ArrayList <Integer> posY = new ArrayList<>();
+		ArrayList <Integer> height = new ArrayList<>();
+		ArrayList <Integer> width = new ArrayList<>();
+		ArrayList <type> myType = new ArrayList<>();
+
+		for(MapObject obj : map.map){
+			posX.add(obj.posX);
+			posY.add(obj.posY);
+			height.add(obj.height);
+			width.add(obj.width);
+			myType.add(obj.myTipe);
+		}
+
 
 		Gson gson = new Gson();
-		String array = gson.toJson(map.map);
-		System.out.println(array);
+		String posXArray = gson.toJson(posX);
+		String posYArray = gson.toJson(posY);
+		String heightArray = gson.toJson(height);
+		String widthArray = gson.toJson(width);
+		String myTypeArray = gson.toJson(myType);
+
+		
 		JsonObject person = new JsonObject();
 		person.addProperty("event","DRAWMAP");
-		person.addProperty("mapObjects", array);
+		person.addProperty("posX", posXArray);
+		person.addProperty("posY", posYArray);
+		person.addProperty("height", heightArray);
+		person.addProperty("width", widthArray);
+		person.addProperty("myType", myTypeArray);
 		System.out.println(person.toString()); 
 		try {
 			player.getSession().sendMessage(new TextMessage(person.toString()));
@@ -48,10 +73,10 @@ public class SinglePlayerRoom {
 	}
 	
 	public void createMap() {
-		map.addMapObject(new MapGround(300,100,0,0,type.GROUND));
-		map.addMapObject(new MapGround(200,100,300,0,type.GROUND));
-		map.addMapObject(new MapWall(100,400,500,0,type.WALL));
-		map.addMapObject(new MapGround(300,100,600,350,type.GROUND));
+		map.addMapObject(new MapGround(300,20,0,0,type.GROUND));
+		map.addMapObject(new MapGround(200,20,300,0,type.GROUND));
+		map.addMapObject(new MapWall(20,400,500,0,type.WALL));
+		map.addMapObject(new MapGround(300,20,520,400,type.GROUND));
 	}
 	
 	public void checkCollisions() {
