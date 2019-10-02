@@ -11,8 +11,8 @@ public class PowerUpVelocidad extends GenericPowerUp {
 
 	public void consumirPowerUp() {
 		System.out.println("CONSUMIDO POWER UP VELOCIDAD");
-		snailTarget.maxSpeed += AUMENTOVELOCIDAD;
-		snailTarget.maxSpeed += AUMENTOACELERACION;
+		snailTarget.maxSpeedX += AUMENTOVELOCIDAD;
+		snailTarget.maxSpeedX += AUMENTOACELERACION;
 		}
 
 }
