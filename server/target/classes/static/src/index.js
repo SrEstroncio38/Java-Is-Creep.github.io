@@ -10,7 +10,9 @@ window.onload = function () {
         socket: null,
         FPS: 60,
         DEBUG_MODE: true,
-        player : null
+        player : null,
+        ground: null
+
     }
     console.log('Despues crear game global');
 
@@ -39,6 +41,13 @@ window.onload = function () {
                 game.global.player.x = Math.floor(msg.posX)
                 game.global.player.y = Math.floor(msg.posY) +500
                 break
+
+            case 'DRAWGROUND':
+                game.global.ground.x = msg.x;
+                game.global.ground.y = msg.y +500
+                game.global.ground.height = msg.height;
+                game.global.ground.width = msg.width;
+                    
         }
     }
 
