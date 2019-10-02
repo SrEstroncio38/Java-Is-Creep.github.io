@@ -43,8 +43,9 @@ window.onload = function () {
                 break
 
             case 'DRAWMAP':
+                var array =  JSON.parse(msg.mapObjects)
                 var i = 0;
-                for (var object in msg.mapObjects){
+                for (var object in array){
                     game.global.mapObjects[i].x = object.posX;
                     game.global.mapObjects[i].y = object.posY +500
                     game.global.mapObjects[i].height = object.height;
