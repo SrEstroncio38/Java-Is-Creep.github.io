@@ -1,6 +1,5 @@
 package server;
 
-import server.MapObject.type;
 
 public class ObstaclePoint extends MapObject {
 	MapObstacle obstacle;

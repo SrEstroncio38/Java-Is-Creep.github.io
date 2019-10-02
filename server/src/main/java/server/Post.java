@@ -1,6 +1,5 @@
 package server;
 
-import java.util.ArrayList;
 
 public class Post { // en caso de que no coincidan
 	String event;
