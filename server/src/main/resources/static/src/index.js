@@ -39,17 +39,21 @@ window.onload = function () {
                     console.dir(msg)
                 }
                 game.global.player.x = Math.floor(msg.posX)
-                game.global.player.y = Math.floor(msg.posY) +500
+                game.global.player.y = worldHeight - (Math.floor(msg.posY))
                 break
 
             case 'DRAWMAP':
                 var array =  JSON.parse(msg.mapObjects)
                 var i = 0;
+                for (var j = 0; j< array.length; j++){
+                    this.game.global.mapObjects[j] = new Object()
+                }
                 for (var object in array){
                     game.global.mapObjects[i].x = object.posX;
-                    game.global.mapObjects[i].y = object.posY +500
+                    game.global.mapObjects[i].y = worldHeight - object.posY 
                     game.global.mapObjects[i].height = object.height;
                     game.global.mapObjects[i].width = object.width;
+                    this.console.log('Objeto ' + i + ': ' + game.global.mapObjects[i].x + ' ' + game.global.mapObjects[i].y +' ' +game.global.mapObjects[i].height + ' ' + game.global.mapObjects[i].width )
                     i++;
                 }
                 break;
