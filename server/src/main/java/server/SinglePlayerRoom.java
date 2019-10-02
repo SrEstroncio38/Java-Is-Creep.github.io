@@ -101,7 +101,7 @@ public class SinglePlayerRoom {
 				e.printStackTrace();
 			}
 		};
-		executor.scheduleAtFixedRate(task, 1000, 2000, TimeUnit.MILLISECONDS);
+		executor.scheduleAtFixedRate(task, 1000, 33, TimeUnit.MILLISECONDS);
 	}
 	
 }
