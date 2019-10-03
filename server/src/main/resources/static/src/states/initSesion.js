@@ -148,7 +148,7 @@ Slooow.initSesionState.prototype = {
                 game.global.input2.value = undefined
 
                
-                game.state.start('singlePlayerState')
+                //game.state.start('singlePlayerState')
                 
             }
         }

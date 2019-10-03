@@ -1,4 +1,5 @@
 Slooow.singlePlayerState = function (game) {
+	var graphics
 }
 
 Slooow.singlePlayerState.prototype = {
@@ -24,10 +25,21 @@ Slooow.singlePlayerState.prototype = {
 
 		//var suelo = new Phaser.Rectangle (30, 550, 30, 500)
 
-		var graphics = game.add.graphics(100, 100);
+		this.graphics = game.add.graphics(0, 0);
 		console.log('Dibujar rectangulo');
-		graphics.lineStyle(2, 0x0000FF, 1);
-		//graphics.drawRect(50, 250, 500, 100);
+		this.graphics.lineStyle(2, 0x0000FF, 1);
+		//this.graphics.drawRect(50, 250, 500, 100);
+		var i = 0;
+		for (var mapObject in game.global.mapObjects) {
+				console.log(game.global.mapObjects[i].x)	
+				console.log(game.global.mapObjects[i].y)
+				console.log(game.global.mapObjects[i].height)	
+				console.log(game.global.mapObjects[i].width)
+				console.log('screen height' + game.world.height )
+			//this.graphics.drawRect(50, 250, 500, 100);
+			this.graphics.drawRect(game.global.mapObjects[i].x, game.world.height -  game.global.mapObjects[i].y, game.global.mapObjects[i].width, -game.global.mapObjects[i].height)
+			i++;
+		}
 	},
 
 	// Se ejecuta siempre hasta que se consigue conexion, en ese caso, pasa a preload (escena)
@@ -45,16 +57,7 @@ Slooow.singlePlayerState.prototype = {
 
 		}
 
-		if (game.global.mapDrawn == false) {
-			if (game.global.mapObjects != undefined) {
-				var i = 0;
-				for (var mapObject in game.global.mapObjects) {
-					graphics.drawRect(game.global.mapObjects[i].x, game.global.mapObjects[i].y, game.global.mapObjects[i].heigth, game.global.mapObjects[i].width)
-					i++;
-				}
-				game.global.mapDrawn = true;
-			}
-		}
+		
 
 		game.global.socket.send(JSON.stringify(msg))
 	}

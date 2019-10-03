@@ -39,23 +39,32 @@ window.onload = function () {
                     console.dir(msg)
                 }
                 game.global.player.x = Math.floor(msg.posX)
-                game.global.player.y = worldHeight - (Math.floor(msg.posY))
+                game.global.player.y = game.world.height  - (Math.floor(msg.posY))
                 break
 
             case 'DRAWMAP':
-                var array =  JSON.parse(msg.mapObjects)
-                var i = 0;
-                for (var j = 0; j< array.length; j++){
+                /*
+                console.log (msg.posXArray)
+                console.log (msg.posYArray)
+                console.log (msg.heightArray)
+                console.log (msg.widthArray)
+                */
+                var arrayPosX =  JSON.parse(msg.posX)
+                var arrayPosY = JSON.parse(msg.posY)
+                var arrayHeight = JSON.parse(msg.height)
+                var arrayWidth = JSON.parse(msg.width)
+
+                for (var j = 0; j< arrayPosX.length; j++){
                     this.game.global.mapObjects[j] = new Object()
                 }
-                for (var object in array){
-                    game.global.mapObjects[i].x = object.posX;
-                    game.global.mapObjects[i].y = worldHeight - object.posY 
-                    game.global.mapObjects[i].height = object.height;
-                    game.global.mapObjects[i].width = object.width;
+                for (var i = 0; i< arrayPosX.length; i++){
+                    game.global.mapObjects[i].x = arrayPosX[i];
+                    game.global.mapObjects[i].y = /*worldHeight -*/ arrayPosY[i] 
+                    game.global.mapObjects[i].height = arrayHeight[i];
+                    game.global.mapObjects[i].width = arrayWidth[i];
                     this.console.log('Objeto ' + i + ': ' + game.global.mapObjects[i].x + ' ' + game.global.mapObjects[i].y +' ' +game.global.mapObjects[i].height + ' ' + game.global.mapObjects[i].width )
-                    i++;
                 }
+                game.state.start('singlePlayerState')
                 break;
                 
                     
@@ -71,43 +80,4 @@ window.onload = function () {
     this.game.state.add('shopState', Slooow.shopState);
 
     this.game.state.start('bootState');
-    /*
-    function create() {
-        console.log('Estado create');
-        //this.add.image(400, 300, 'sky');
-
-        /*
-            var particles = this.add.particles('red');
-        
-            var emitter = particles.createEmitter({
-                speed: 100,
-                scale: { start: 1, end: 0 },
-                blendMode: 'ADD'
-            });
-        
-            var logo = this.physics.add.image(400, 100, 'logo');
-        
-            logo.setVelocity(100, 200);
-            logo.setBounce(1, 1);
-            logo.setCollideWorldBounds(true);
-        
-            emitter.startFollow(logo);
-        */
-    /*
-     var sendMessageButton = this.add.text(100, 100, 'Enviar mensaje!', { fill: '#0f0' });
-     sendMessageButton.setInteractive();
- 
-    button = game.add.button(game.world.centerX - 95, 460, 'button', openWindow, this, 2, 1, 0);
-    button.input.useHandCursor = true;
-
-    button.on('pointerdown', () => {
-        let msg = new Object()
-        msg.event = 'DEBUG'
-        msg.message = 'este es un mensaje de prueba'
-        msg.remitente = 'cliente'
-        msg.datos = [3, 8, 16]
-        msg.intruso = 'axwell'
-        connection.send(JSON.stringify(msg));
-    })
-}*/
 }
