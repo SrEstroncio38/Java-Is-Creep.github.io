@@ -100,20 +100,21 @@ Slooow.initSesionState.prototype = {
         game.input.keyboard.addKeyCapture(Phaser.Keyboard.ENTER);
 
 
-		/*
+		
 		buttonInitSesion = game.add.button(game.world.centerX,
-				game.world.centerY + 100, 'button1', actionOnClick, this,
+				game.world.centerY + 100, 'seaSnail', actionOnClick, this,
 				0, 0, 0)
-		buttonInitSesion.anchor.set(0.5)
+        buttonInitSesion.anchor.set(0.5)
+        
 		textButtonInit = game.add.text(game.world.centerX,
 				game.world.centerY + 100, 'Iniciar Sesion', style2)
 		textButtonInit.anchor.set(0.5)
 		
 		textButtonInit.alpha = 0.5
-		buttonInitSesion.alpha = 0.5
+		//buttonInitSesion.alpha = 0.5
 		
 		textButtonInit.scale.setTo(0.5,0.5)
-		buttonInitSesion.scale.setTo(0.5,0.5)
+		buttonInitSesion.scale.setTo(0.3,0.3)
 		
 		function actionOnClick() {
 			if (inicioSesionNameButton.value !== undefined && inicioSesionPassButton.value !== undefined) {
@@ -122,15 +123,20 @@ Slooow.initSesionState.prototype = {
 						event : 'NAME AND PASSWORD',
 						name : inicioSesionNameButton.value,
 						pass : inicioSesionPassButton.value
-					}
+                    }
+                    console.log('Usuario:' + inicioSesionNameButton.value)
+                    console.log('contrasena: ' + inicioSesionPassButton.value)
 					game.global.socket.send(JSON.stringify(msg))
 					inicioSesionNameButton.text.setText('')
 					inicioSesionNameButton.value = undefined
 					inicioSesionPassButton.text.setText('')
-					inicioSesionPassButton.value = undefined
+                    inicioSesionPassButton.value = undefined
+
+                    //Por ahora pasa directamente al menu principal, pero mas tarde habrá que comprobar usuario y contraseña
+                    game.state.start('mainMenuState')
 				}
 			}
-		}*/
+		}
     },
 
     update: function () {
