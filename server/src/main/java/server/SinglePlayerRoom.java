@@ -73,6 +73,8 @@ public class SinglePlayerRoom {
 	}
 	
 	public void createMap() {
+		// MAPA 1
+		/*
 		map.addMapObject(new MapGround(300,20,0,0,type.GROUND));
 		map.addMapObject(new MapGround(200,20,300,0,type.GROUND));
 		map.addMapObject(new MapWall(20,400,500,0,type.WALL));
@@ -80,12 +82,26 @@ public class SinglePlayerRoom {
 		map.addMapObject(new MapGround(300,20,800,400,type.GROUND));
 		map.addMapObject(new MapGround(300,20,600,200,type.GROUND));
 		map.addMapObject(new MapWall(20,200,800,200,type.WALL));
+		*/
+		
+		//Mapa2
+		map.addMapObject(new MapGround(100,20,0,0,type.GROUND));
+		map.addMapObject(new MapWall(20,400,100,0,type.WALL));
+		map.addMapObject(new MapGround(100,20,100,400,type.GROUND));
+		map.addMapObject(new MapSlope(300,Math.toRadians(-30),200,400,type.SLOPE)); // seria de 300 por 173
+		map.addMapObject(new MapGround(300,20,480,220,type.GROUND));
+		//map.addMapObject(new MapWall(20,200,900,193,type.WALL));
+
+		
+		
 
 	}
 	
 	public void checkCollisions() {
 		boolean groundCollision = false;
 		boolean wallCollision = false;
+		boolean slopeCollision = false;
+		double slopeRadians = 0;
 		
 		for(MapObject object : map.map) {
 			if(object.collider.hayColision(player)) {
@@ -96,7 +112,11 @@ public class SinglePlayerRoom {
 				case WALL:
 					wallCollision = true;
 					break;
-					
+				case SLOPE:
+					MapSlope auxSlope = (MapSlope) object;
+					slopeCollision=true;
+					slopeRadians = auxSlope.radians;
+					break;
 				default:
 					System.out.println("COLISION RARA");
 				}
@@ -105,8 +125,14 @@ public class SinglePlayerRoom {
 		}
 		player.mySnail.isOnFloor = groundCollision;
 		player.mySnail.isOnWall = wallCollision;
+		player.mySnail.isOnSlope = slopeCollision;
+		player.mySnail.slopeRadians = slopeRadians;
+		
+		
 		System.out.println(" collision con suelo es: " + groundCollision);
 		System.out.println(" collision con pared es: " + wallCollision);
+		System.out.println(" collision con slope es: " + slopeCollision);
+		
 	}
 	
 	

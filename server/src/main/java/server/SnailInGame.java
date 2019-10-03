@@ -8,25 +8,28 @@ public class SnailInGame {
 	final int colliderOfsetY = 50;
 
 	// valores iniciales
-	public final int MAXSTAMINA = 300; //151 de base son 5 seg, 300 dura 10 segundos, se resta 1 de estamina por segundo
+	public final int MAXSTAMINA = 300; // 151 de base son 5 seg, 300 dura 10 segundos, se resta 1 de estamina por
+										// segundo
 	public final int MAXVELOCIDADX = 3;
 	public final int MAXVELOCIDADY = 3;
-	public final float ACELERATIONX = 0.05f;
+	public final float ACELERATIONX = 0.05f; // deberian ser la misma aceleracion.
 	public final float ACALERATIONY = 0.05f;
 	public final float GRAVITY = 0.3f;
 	public final float BREAKFORCE = 0.1f;
 	public final float STAMINALOSE = 1; // tarda 5 segundos en perder la stamina
 	public final float STAMINANORMALRECOVER = 2.5f; // tarda 2 segundos en recargar la stamina
 	public final float STAMINARUNOUTRECOVER = 1.5f; // tarda 3.33 segundos en recargar la stamina
-	public final float MAXGRAVITYSPEED = -4;
-	public final float MASS = 2;
+	public final float MAXGRAVITYSPEED = -20;
+	public final float MASS = 1;
 	public final float SPEEDXLOSE = 1.02f;
 	// OPERACION 151 / (1.5f * 30 fps)
 
 	// Valores maximos que pueden ser cambiado con power ups momentameamente
 	public int maxStamina;
-	public int maxSpeedX;
-	public int maxSpeedY;
+	public float maxSpeedX;
+	public float maxSpeedY;
+	public float maxSpeedInSlopeX;
+	public float maxSpeedInSlopeY;
 	public float acelerationX;
 	public float acelerationY;
 	public float breakForce;
@@ -34,6 +37,8 @@ public class SnailInGame {
 
 	public boolean isOnFloor = true;
 	public boolean isOnWall = false;
+	public boolean isOnSlope = false;
+	public double slopeRadians = 0;
 
 	public float speedX;
 	public float speedY;
@@ -86,48 +91,77 @@ public class SnailInGame {
 		boolean useObject = lastMovement.useObject;
 		lastMovementLock.unlock();
 
-		System.out.println(stamina);
-		System.out.println(runOutStamina);
 		// si tienes stamina haces funcionamiento normal
 		if (!runOutStamina) {
 			// comprobamos si aceleramos o no para perder o quitar stamina
 			if (!isStopping) {
-				stamina -= STAMINALOSE;
-				if(stamina <= 0){
+
+				if ((!isOnFloor) && (!isOnWall) && (!isOnSlope)) { // si estas cayendo no pierdes stamina, sino que recuperas parte
+					stamina += STAMINARUNOUTRECOVER;
+				} else {
+					stamina -= STAMINALOSE;
+				}
+
+				if (stamina <= 0) {
 					runOutStamina = true;
 				}
 			} else {
 				stamina += STAMINANORMALRECOVER;
 			}
 
-
 			// comprobamos si esta en el suelo para que avance
 			if (isOnFloor) {
-				System.out.println("estoy en suelo");
 				if (!isStopping) {
-					speedX += acelerationX;
+					speedX += acelerationX * MASS;
 				} else {
-					speedX -= breakForce;
+					speedX -= breakForce * MASS;
 				}
-				if(speedY <=0){
+				if (speedY <= 0) {
 					speedY = 0;
 				}
 
 			} else {
-				if (!isOnWall) {
-					speedY -= GRAVITY;
+				if(isOnSlope){
+
+				} else if (!isOnWall) {
+					speedY -= GRAVITY * MASS;
 				}
+			}
+
+			if (isOnSlope) { // de momento no se contempla que una rampa llege a una escalera
+				System.out.println("estamos en slope");
+				maxSpeedInSlopeX = (float) (maxSpeedX * Math.cos(slopeRadians));
+				maxSpeedInSlopeY = (float) (maxSpeedY * Math.sin(slopeRadians));
+				System.out.println("maxima velocidad en cuestaX: " + maxSpeedX);
+				System.out.println("maxima velocidad en cuestaY: " + maxSpeedY);
+
+				if (!isStopping) {
+					speedX += (acelerationX * MASS);
+					speedY += (acelerationY * MASS);
+					System.out.println("velocidad en cuestaX: " + speedX);
+					System.out.println("velocidad en cuestaY: " + speedY);
+				} else { // si estas frenando no te caes
+					speedX -= breakForce * MASS ;
+					speedY -= breakForce * MASS ;
+					if (speedY < 0) { // si estoy frenando no puedo caerme
+						speedY = 0;
+					}
+				}
+			} else { // hago esto para comprobar que no se pase de velocidad
+				maxSpeedX = MAXVELOCIDADX;
+				maxSpeedY = MAXVELOCIDADY;
+				slopeRadians = 0;
 			}
 
 			// si esta en la pared sube
 			if (isOnWall) {
 				speedX = 0;
 				if (!isStopping) {
-					speedY += acelerationY;
+					speedY += acelerationY * MASS;
 				} else {
 					if (!isOnFloor) {
 
-						speedY -= GRAVITY;
+						speedY -= GRAVITY * MASS;
 
 					} else {
 						speedY = 0;
@@ -138,46 +172,60 @@ public class SnailInGame {
 
 			// si esta en el aire, ponemos la vel X al maximo para saltar las paredes
 			// (PROVISIONAL)
-			
-			if ((!isOnFloor) && (!isOnWall)) {
-				speedX = speedX/SPEEDXLOSE;
+
+			if ((!isOnFloor) && (!isOnWall) && (!isOnSlope)) {
+				speedX = speedX / SPEEDXLOSE;
 			}
-		} else { // si te quedas sin estamina te quedas parado hasta que te recuperes, 
+		} else { // si te quedas sin estamina te quedas parado hasta que te recuperes,
 			stamina += STAMINARUNOUTRECOVER;
-			if ((!isOnFloor) && (!isOnWall)) {
-				speedX = speedX/SPEEDXLOSE;
+			if ((!isOnFloor) && (!isOnWall) && (!isOnSlope)) {
+				speedX = speedX / SPEEDXLOSE;
 			}
-			if(!isOnFloor){
-				speedY -= GRAVITY; 
+			if ((!isOnFloor) && (!isOnSlope)) {
+				speedY -= GRAVITY * MASS;
 			} else {
 				speedY = 0;
 				speedX = 0;
 			}
-			if(stamina >= maxStamina){
+			if (stamina >= maxStamina) {
 				runOutStamina = false;
 				stamina = maxStamina;
 			}
 		}
 		// Ajustamos las velocidades
-		adjustSpeed();
+		
 
 		// actualizamos posiciones
-		posX += speedX;
-		posY += speedY;
+		if(isOnFloor || isOnWall){
+			adjustSpeed(maxSpeedX,maxSpeedY);
+			posX += speedX;
+			posY += speedY;
+		} else if (isOnSlope){
+			adjustSpeed(maxSpeedInSlopeX,maxSpeedInSlopeY);
+				posX += speedX *Math.cos(slopeRadians);
+				posY += speedX *Math.sin(slopeRadians);
+		} else {
+			adjustSpeed(maxSpeedX,maxSpeedY);
+			posX += speedX;
+			posY += speedY;
+		}
+
 		collider.recalculatePosition(posX, posY);
 	}
 
-	public void adjustSpeed(){
-		if (speedX > maxSpeedX) {
-			speedX = maxSpeedX;
+	public void adjustSpeed(float maxX, float maxY) {
+		
+		if (speedX > maxX) {
+			speedX = maxX;
 		} else if (speedX < 0) {
 			speedX = 0;
 		}
-		if (speedY > maxSpeedY) {
-			speedY = maxSpeedY;
-		} else if(speedY < MAXGRAVITYSPEED){
+		if (speedY > maxY) {
+			speedY = maxY;
+		} else if (speedY < MAXGRAVITYSPEED) {
 			speedY = MAXGRAVITYSPEED;
 		}
+
 	}
 
 	// Cambia el movement anterior por la siguiente actualizacion
