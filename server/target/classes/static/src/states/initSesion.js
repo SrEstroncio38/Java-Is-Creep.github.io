@@ -21,7 +21,6 @@ Slooow.initSesionState.prototype = {
     // servidor para que lo compruebe
     create: function () {
         // BackGround
-        
 	    b = game.add.image (game.world.centerX, game.world.centerY, 'background')
 		b.anchor.set (0.5, 0.5)
 		b.scale.setTo (1.2,1.2)
@@ -100,23 +99,38 @@ Slooow.initSesionState.prototype = {
         game.input.keyboard.addKeyCapture(Phaser.Keyboard.ENTER);
 
 
-		
-		buttonInitSesion = game.add.button(game.world.centerX,
-				game.world.centerY + 100, 'seaSnail', actionOnClick, this,
+		//Boton iniciar sesion
+		buttonInitSesion = game.add.button(game.world.centerX + 100,
+				game.world.centerY + 100, 'seaSnail', actionOnClickInit, this,
 				0, 0, 0)
         buttonInitSesion.anchor.set(0.5)
+
+        //Boton crear cuenta
+        buttonCreateAccount = game.add.button(game.world.centerX -100,
+            game.world.centerY + 100, 'seaSnail', actionOnClickCreate, this,
+            0, 0, 0)
+        buttonCreateAccount.anchor.set(0.5)
         
-		textButtonInit = game.add.text(game.world.centerX,
+        //Texto iniciar sesion
+		textButtonInit = game.add.text(game.world.centerX + 100,
 				game.world.centerY + 100, 'Iniciar Sesion', style2)
 		textButtonInit.anchor.set(0.5)
-		
-		textButtonInit.alpha = 0.5
-		//buttonInitSesion.alpha = 0.5
-		
+		//textButtonInit.alpha = 0.5
+		buttonInitSesion.alpha = 0.5
 		textButtonInit.scale.setTo(0.5,0.5)
-		buttonInitSesion.scale.setTo(0.3,0.3)
-		
-		function actionOnClick() {
+        buttonInitSesion.scale.setTo(0.3,0.3)
+        
+        //Texto boton crear
+        textButtonCreate = game.add.text(game.world.centerX - 100,
+                game.world.centerY+100, 'Crear cuenta', style2)
+        textButtonCreate.anchor.set(0.5)
+        //textButtonCreate.aplha = 0.5
+        textButtonCreate.scale.setTo(0.5, 0.5)
+        buttonCreateAccount.alpha = 0.5
+        buttonCreateAccount.scale.setTo(0.3, 0.3)        
+        
+        //Funcion que se llama cuando se pulsa en iniciar sesion
+		function actionOnClickInit() {
 			if (inicioSesionNameButton.value !== undefined && inicioSesionPassButton.value !== undefined) {
 				if (inicioSesionNameButton.value.length !== 0 && inicioSesionPassButton.value.length !== 0) {
 					let msg = {
@@ -136,7 +150,13 @@ Slooow.initSesionState.prototype = {
                     game.state.start('mainMenuState')
 				}
 			}
-		}
+        }
+        
+        //Funcion que se llama cuando se pulsa en crear cuenta
+        function actionOnClickCreate (){
+            console.log('Pulsado crear cuenta')
+            game.state.start('createAccountState')
+        }
     },
 
     update: function () {
