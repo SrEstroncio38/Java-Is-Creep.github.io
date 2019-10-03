@@ -107,7 +107,10 @@ Slooow.createAccountState.prototype = {
                         pass : passwordInput.value,
                         confirmPass : confirmPasswordInput.value
                     }
-					game.global.socket.send(JSON.stringify(msg))
+                    game.global.socket.send(JSON.stringify(msg))
+                    
+                    game.global.username = usernameInput.value
+                    game.global.password = passwordInput.value
 					//inicioSesionNameButton.text.setText('')
 					//inicioSesionNameButton.value = undefined
 					//inicioSesionPassButton.text.setText('')

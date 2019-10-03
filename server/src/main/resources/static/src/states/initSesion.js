@@ -23,7 +23,8 @@ Slooow.initSesionState.prototype = {
         // BackGround
 	    b = game.add.image (game.world.centerX, game.world.centerY, 'background')
 		b.anchor.set (0.5, 0.5)
-		b.scale.setTo (1.2,1.2)
+        b.scale.setTo (1.2,1.2)
+        
 		/*
 		// Window
 		var window = game.add.image (game.world.centerX, game.world.centerY, 'window')
@@ -43,7 +44,8 @@ Slooow.initSesionState.prototype = {
 		/*var text = game.add.text(game.world.centerX, game.world.centerY - 200,
 				'Slooow GAME', style)
 		text.anchor.set(0.5)
-		*/
+        */
+        
         // Boton Username
         inicioSesionNameButton = game.add.inputField(game.world.centerX - 160,
             game.world.centerY - 100, {
@@ -140,12 +142,15 @@ Slooow.initSesionState.prototype = {
                     }
                     console.log('Usuario:' + inicioSesionNameButton.value)
                     console.log('contrasena: ' + inicioSesionPassButton.value)
+                    game.global.username = inicioSesionNameButton.value
+                    game.global.password = inicioSesionPassButton.value
 					game.global.socket.send(JSON.stringify(msg))
 					inicioSesionNameButton.text.setText('')
 					inicioSesionNameButton.value = undefined
 					inicioSesionPassButton.text.setText('')
                     inicioSesionPassButton.value = undefined
 
+                    
                     //Por ahora pasa directamente al menu principal, pero mas tarde habrá que comprobar usuario y contraseña
                     game.state.start('mainMenuState')
 				}

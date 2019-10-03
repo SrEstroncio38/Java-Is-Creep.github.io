@@ -12,7 +12,9 @@ window.onload = function () {
         DEBUG_MODE: true,
         player : null,
         mapObjects: [],
-        mapDrawn: false
+        mapDrawn: false,
+        username: '',
+        password: ''
     }
     console.log('Despues crear game global');
 
