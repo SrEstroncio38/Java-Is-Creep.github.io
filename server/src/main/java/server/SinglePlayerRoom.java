@@ -76,7 +76,11 @@ public class SinglePlayerRoom {
 		map.addMapObject(new MapGround(300,20,0,0,type.GROUND));
 		map.addMapObject(new MapGround(200,20,300,0,type.GROUND));
 		map.addMapObject(new MapWall(20,400,500,0,type.WALL));
-		map.addMapObject(new MapGround(300,20,520,400,type.GROUND));
+		map.addMapObject(new MapGround(100,20,500,400,type.GROUND));
+		map.addMapObject(new MapGround(300,20,800,400,type.GROUND));
+		map.addMapObject(new MapGround(300,20,600,200,type.GROUND));
+		map.addMapObject(new MapWall(20,200,800,200,type.WALL));
+
 	}
 	
 	public void checkCollisions() {
@@ -85,7 +89,6 @@ public class SinglePlayerRoom {
 		
 		for(MapObject object : map.map) {
 			if(object.collider.hayColision(player)) {
-				object.collisionInfo();
 				switch(object.myTipe) {
 				case GROUND:
 					groundCollision = true;

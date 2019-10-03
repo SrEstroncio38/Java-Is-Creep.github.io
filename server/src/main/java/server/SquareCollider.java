@@ -23,8 +23,8 @@ public class SquareCollider { // el centro de los colliders sera la esquina de a
 	
 	
 	public boolean hayColision(PlayerConected jugador) { // hay que intentar que solo se compruebe lo que es visible
-		System.out.println("Collider info: maxX: " +maxX + " minX: " +minX + " maxY: " +maxY + " minY: " + minY);
-		System.out.println("Player info: maxX: " +jugador.mySnail.collider.maxX + " minX: " +jugador.mySnail.collider.minX + " maxY: " +jugador.mySnail.collider.maxY + " minY: " + jugador.mySnail.collider.minY);
+		//System.out.println("Collider info: maxX: " +maxX + " minX: " +minX + " maxY: " +maxY + " minY: " + minY);
+		//System.out.println("Player info: maxX: " +jugador.mySnail.collider.maxX + " minX: " +jugador.mySnail.collider.minX + " maxY: " +jugador.mySnail.collider.maxY + " minY: " + jugador.mySnail.collider.minY);
 		if((maxX >= jugador.mySnail.collider.maxX) &&(minX<= jugador.mySnail.collider.maxX)) { // comprobamos las maxX
 			if((maxY >= jugador.mySnail.collider.maxY) &&(minY<= jugador.mySnail.collider.maxY)) { // comprobamos las maxY
 				return true;
