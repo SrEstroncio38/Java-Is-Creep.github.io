@@ -156,6 +156,7 @@ Slooow.initSesionState.prototype = {
         function actionOnClickCreate (){
             console.log('Pulsado crear cuenta')
             game.state.start('createAccountState')
+            console.log('despues crear cuenta')
         }
     },
 
@@ -174,8 +175,8 @@ Slooow.initSesionState.prototype = {
                 game.global.input2.value = undefined
 
                
-                //game.state.start('singlePlayerState')
-                
+                game.state.start('singlePlayerState')
+                console.log('despues de iniciar isngle')
             }
         }
                

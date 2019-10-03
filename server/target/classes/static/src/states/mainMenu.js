@@ -1,12 +1,11 @@
 Slooow.mainMenuState = function(game) {
-    var prueba
 }
 
 Slooow.mainMenuState.prototype = {
 
     init : function() {
         if (game.global.DEBUG_MODE) {
-            console.log("[DEBUG] Entering **CREATEACCOUNT** state");
+            console.log("[DEBUG] Entering **MainMenu** state");
         }
     },
 
