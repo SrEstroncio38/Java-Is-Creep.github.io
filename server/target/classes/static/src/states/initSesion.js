@@ -103,13 +103,13 @@ Slooow.initSesionState.prototype = {
 
 		//Boton iniciar sesion
 		buttonInitSesion = game.add.button(game.world.centerX + 100,
-				game.world.centerY + 100, 'seaSnail', actionOnClickInit, this,
+				game.world.centerY + 100, 'button', actionOnClickInit, this,
 				0, 0, 0)
         buttonInitSesion.anchor.set(0.5)
 
         //Boton crear cuenta
         buttonCreateAccount = game.add.button(game.world.centerX -100,
-            game.world.centerY + 100, 'seaSnail', actionOnClickCreate, this,
+            game.world.centerY + 100, 'button', actionOnClickCreate, this,
             0, 0, 0)
         buttonCreateAccount.anchor.set(0.5)
         
@@ -118,7 +118,7 @@ Slooow.initSesionState.prototype = {
 				game.world.centerY + 100, 'Iniciar Sesion', style2)
 		textButtonInit.anchor.set(0.5)
 		//textButtonInit.alpha = 0.5
-		buttonInitSesion.alpha = 0.5
+		//buttonInitSesion.alpha = 0.5
 		textButtonInit.scale.setTo(0.5,0.5)
         buttonInitSesion.scale.setTo(0.3,0.3)
         
@@ -128,7 +128,7 @@ Slooow.initSesionState.prototype = {
         textButtonCreate.anchor.set(0.5)
         //textButtonCreate.aplha = 0.5
         textButtonCreate.scale.setTo(0.5, 0.5)
-        buttonCreateAccount.alpha = 0.5
+        //buttonCreateAccount.alpha = 0.5
         buttonCreateAccount.scale.setTo(0.3, 0.3)        
         
         //Funcion que se llama cuando se pulsa en iniciar sesion

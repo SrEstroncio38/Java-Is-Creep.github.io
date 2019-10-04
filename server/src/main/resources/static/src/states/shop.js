@@ -17,8 +17,8 @@ Slooow.shopState.prototype = {
         console.log()
 
         var style = {
-			font : "bold 40px Impact",
-			fill : "#ffffff",
+			font : "40px Arial",
+			fill : "#000000",
 			align : "center"
         };
         
@@ -28,14 +28,14 @@ Slooow.shopState.prototype = {
         b.scale.setTo (1.2,1.2)
 
         //Boton desconectar
-		buttonBack = game.add.button(40,
-            40, 'seaSnail', actionOnClickBack, this,
+		buttonBack = game.add.button(50,
+            40, 'button', actionOnClickBack, this,
             0, 0, 0)
         buttonBack.anchor.set(0.5)
-        buttonBack.scale.setTo(0.3, 0.3)
+        buttonBack.scale.setTo(0.2, 0.3)
 
         //Texto desconectar
-		textButtonBack = game.add.text(40,
+		textButtonBack = game.add.text(50,
             40, 'Back', style)
         textButtonBack.anchor.set(0.5)
         textButtonBack.scale.setTo(0.5,0.5)
