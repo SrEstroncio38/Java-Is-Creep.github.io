@@ -7,17 +7,21 @@ public class MapObject { // clase principal de la que heredaran todos los objeto
 	int posY;
 	SquareCollider collider;
 	enum type {
-		GROUND,WALL,OBSTACLE,POWERUP,OBSTACLEPOINT
+		GROUND,WALL,OBSTACLE,POWERUP,OBSTACLEPOINT,SLOPE
 	}
 	
 	type myTipe;
 
-	public MapObject(int width, int height, int posX, int posY, type myTipe,int colliderOfsetX,int colliderOfsetY) {
-		collider = new SquareCollider(colliderOfsetX,colliderOfsetY);
+	public MapObject(int width, int height, int posX, int posY, type myTipe) {
+		collider = new SquareCollider(width,height,posX,posY);
 		this.width = width;
 		this.height = height;
 		this.posX = posX;
 		this.posY = posY;
 		this.myTipe = myTipe;
+	}
+	
+	public void collisionInfo() {
+		System.out.println("Hay collision");
 	}
 }

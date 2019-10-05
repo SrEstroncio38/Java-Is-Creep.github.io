@@ -11,9 +11,9 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class Application implements WebSocketConfigurer {
 
-		public static void main(String[] args) {
-			SpringApplication.run(Application.class, args);
-		}
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 		
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
