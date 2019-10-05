@@ -17,7 +17,7 @@
 				<manifest>
 					<addClasspath>true</addClasspath>
 					<classpathPrefix>lib/</classpathPrefix>
-					<mainClass>server.Application</mainClass>
+					<mainClass>org.JavaIsCreep.server.Application</mainClass>
 				</manifest>
 			</archive>
 		</configuration>
